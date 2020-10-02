@@ -63,7 +63,7 @@ class BST {
 
     searchRecur(val, root = this.root) {
         if (!root) return false;
-
+        if (root.val === val) return true;
         if (val < root.val) {
             return this.searchRecur(val, root.left);
         } else {
