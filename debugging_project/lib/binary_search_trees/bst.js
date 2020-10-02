@@ -11,24 +11,52 @@ class BST {
         this.root = null;
     }
 
+    // ******Recursive Insertion
+    // insert(val, root = this.root) {
+    //     let newNode = new TreeNode(val);
+    //     if (!this.root) {
+    //         this.root = newNode;
+    //         return;
+    //     }
+
+    //     if (val < root.val) {
+    //         if (root.left) {
+    //             this.insert(val, root.left);
+    //         } else {
+    //             root.left = newNode;
+    //         }
+    //     } else {
+    //         if (root.right) {
+    //             this.insert(val, root.right);
+    //         } else {
+    //             root.right = newNode;
+    //         }
+    //     }
+    // }
+
+    //******Iterative Insertion
     insert(val, root = this.root) {
         let newNode = new TreeNode(val);
         if (!this.root) {
             this.root = newNode;
             return;
         }
-
-        if (val < root.val) {
-            if (root.left) {
-                this.insert(val, root.left);
+        let curr = root;
+        while (curr) {
+            if (val < curr.val) {
+                if (!curr.left) {
+                    curr.left = newNode;
+                    return;
+                } else {
+                    curr = curr.left;
+                }
             } else {
-                root.left = newNode;
-            }
-        } else {
-            if (root.right) {
-                this.insert(val, root.right);
-            } else {
-                root.right = newNode;
+                if (!curr.right) {
+                    curr.right = newNode;
+                    return;
+                } else {
+                    curr = curr.right;
+                }
             }
         }
     }
