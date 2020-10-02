@@ -6,51 +6,60 @@ class TreeNode {
     }
 }
 
-
 class BST {
-   constructor(){
-       this.root = new TreeNode(null);
-   }
+    constructor() {
+        this.root = null;
+    }
 
-   insert(val, root=this.root){
-       if (!this.root){
-           this.root = new TreeNode(val);
-       };
+    insert(val, root = this.root) {
+        let newNode = new TreeNode(val);
+        if (!this.root) {
+            this.root = newNode;
+            return;
+        }
 
-       if (val < root.val){
-            root.left = new TreeNode(val);
-       } else {
-            root.right = new TreeNode(val);
-       };
-   }
+        if (val < root.val) {
+            if (root.left) {
+                this.insert(val, root.left);
+            } else {
+                root.left = newNode;
+            }
+        } else {
+            if (root.right) {
+                this.insert(val, root.right);
+            } else {
+                root.right = newNode;
+            }
+        }
+    }
 
-   searchRecur(val, root=this.root){
-       if (!root) return false;
-       
-       if (val < root.val){
-           return this.searchRecur(val, root.left);
-       } else {
-           return this.searchRecur(val, root.right);
-       };
-   }
+    searchRecur(val, root = this.root) {
+        if (!root) return false;
 
-   searchIter(val){
-       while (this.root){
-           if (val === this.root.val){
-               return true;
-           } else if (val < this.root.val){
-               this.root = this.root.left;
-           } else {
-               this.root = this.root.right;
-           }
-       };
-       return false;
-   }
+        if (val < root.val) {
+            return this.searchRecur(val, root.left);
+        } else {
+            return this.searchRecur(val, root.right);
+        }
+    }
+
+    searchIter(val) {
+        while (this.root) {
+            if (val === this.root.val) {
+                return true;
+            } else if (val < this.root.val) {
+                this.root = this.root.left;
+            } else {
+                this.root = this.root.right;
+            }
+        }
+        return false;
+    }
 }
 
 module.exports = {
     TreeNode,
-    BST
+    BST,
 };
 
 // example
@@ -62,8 +71,8 @@ tree.insert(1);
 tree.insert(7);
 tree.insert(16);
 
-console.log(tree.searchRecur(7)) // should be true
-console.log(tree.searchRecur(14)) // should be false
+console.log(tree.searchRecur(7)); // should be true
+console.log(tree.searchRecur(14)); // should be false
 
-console.log(tree.searchIter(7)) // should be true
-console.log(tree.searchIter(14)) // should be false
+console.log(tree.searchIter(7)); // should be true
+console.log(tree.searchIter(14)); // should be false
