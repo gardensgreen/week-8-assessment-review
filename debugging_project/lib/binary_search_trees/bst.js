@@ -72,13 +72,15 @@ class BST {
     }
 
     searchIter(val) {
-        while (this.root) {
-            if (val === this.root.val) {
+        if (!this.root) return false;
+        let curr = this.root;
+        while (curr) {
+            if (val === curr.val) {
                 return true;
-            } else if (val < this.root.val) {
-                this.root = this.root.left;
+            } else if (val < curr.val) {
+                curr = curr.left;
             } else {
-                this.root = this.root.right;
+                curr = curr.right;
             }
         }
         return false;
