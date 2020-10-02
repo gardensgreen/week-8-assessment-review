@@ -6,13 +6,11 @@ function inOrderArray(root) {
 }
 
 function postOrderArray(root) {
-    // uncomment me!
-    //     if (!root.left && !root.right) return null;
-    //     return [
-    //         postOrderArray(root.left),
-    //         postOrderArray(root.val),
-    //         postOrderArray(root.right)
-    //     ];
+    if (!root) return [];
+
+    let left = postOrderArray(root.left);
+    let right = postOrderArray(root.right);
+    return [...left, ...right, root.val];
 }
 
 // examples
