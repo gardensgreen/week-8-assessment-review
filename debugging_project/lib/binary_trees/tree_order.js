@@ -1,31 +1,30 @@
-function inOrderArray(root) { // uncomment me!
-//     if (!root.length) return null;
-
-//     let left = inOrderArray(root.left);
-//     let right = inOrderArray(root.right);
-//     return left.push(right).push(root.val);
+function inOrderArray(root) {
+    if (!root) return [];
+    let left = inOrderArray(root.left);
+    let right = inOrderArray(root.right);
+    return [...left, root.val, ...right];
 }
 
-function postOrderArray(root){ // uncomment me!
-//     if (!root.left && !root.right) return null;
-
-//     return [
-//         postOrderArray(root.left),
-//         postOrderArray(root.val),
-//         postOrderArray(root.right)
-//     ];
+function postOrderArray(root) {
+    // uncomment me!
+    //     if (!root.left && !root.right) return null;
+    //     return [
+    //         postOrderArray(root.left),
+    //         postOrderArray(root.val),
+    //         postOrderArray(root.right)
+    //     ];
 }
 
 // examples
 
-const { TreeNode } = require('./tree_node.js');
+const { TreeNode } = require("./tree_node.js");
 
-let root = new TreeNode('a');
-let b = new TreeNode('b');
-let c = new TreeNode('c');
-let d = new TreeNode('d');
-let e = new TreeNode('e');
-let f = new TreeNode('f');
+let root = new TreeNode("a");
+let b = new TreeNode("b");
+let c = new TreeNode("c");
+let d = new TreeNode("d");
+let e = new TreeNode("e");
+let f = new TreeNode("f");
 
 root.left = b;
 root.right = c;
@@ -38,5 +37,5 @@ console.log(postOrderArray(root)); // should equal ['d', 'e', 'b', 'f', 'c', 'a'
 
 module.exports = {
     inOrderArray,
-    postOrderArray
+    postOrderArray,
 };
